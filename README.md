@@ -1,7 +1,7 @@
 # Cal-Num-UNPSJB
 Algoritmos en Python de la Materia de Cálculo Numérico - Universidad Nacional de la Patagonia (Sede: Comodoro Rivadavia)
 
-#################### DESCOMPOSICIÓN LU ######################################################
+############# DESCOMPOSICIÓN LU ################
 import numpy as np
 import pprint
 
