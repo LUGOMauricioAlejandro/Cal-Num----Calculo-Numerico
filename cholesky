@@ -1,0 +1,22 @@
+import pprint
+import scipy
+import scipy.linalg   # SciPy Linear Algebra Library
+import numpy as np
+
+A = np.array([ [4.0, -1.0, 1.0], [-1.0, 4.25, 2.75], [1.0, 2.75, 3.5] ])
+P, L, U = scipy.linalg.lu(A) #paque de algebra lineal de Python
+
+print("A:")
+pprint.pprint(A)
+
+print("P:")
+pprint.pprint(P)
+
+print("L:")
+pprint.pprint(L)
+
+print("U:")
+pprint.pprint(U)
+
+print("P*L*U:")
+pprint.pprint(P* (L*U)) #calculo del apunte de Cátedra página 30 ----> LPU=D---->Diagonaliza  
