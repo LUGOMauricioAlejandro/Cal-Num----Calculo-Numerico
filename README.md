@@ -34,7 +34,7 @@ def lu_fac(matriz):
     
     return L, U
 
-# Ejercicion 1
+# 
 
 A = [[-1,1,0,-3],[1,0,3,1],[0,1,-1,-1],[3,0,1,2] ] #Matriz del ejercicio 1
 L, U = lu_fac(A)
