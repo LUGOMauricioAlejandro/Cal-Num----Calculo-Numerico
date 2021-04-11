@@ -1,0 +1,53 @@
+import numpy as np
+import pprint
+
+
+def GS(A,b,x0,eps=1e-5,n=1000): #deifine dos condiciones de salida del programa eps y n
+    D = np.diag(np.diag(A))
+    L = np.tril(A,-1)
+    U = np.triu(A,+1)
+    x = x0
+    print('paso:', 0 , '|x=', x0)
+    for i in range (n):
+        DL_i = np.linalg.inv(D+L)
+        #print(DL_i)  #imprime la matriz inversa 
+        xTemp = x
+        x = np.dot( DL_i, b - np.dot((U), x) ) # Fórmula  x**(k+1) = (L+D)**-1 * (b - Ux**k) [Producto de Matrices]
+        #pprint.pprint(x) #imprime la matriz del producto para corroborar con el cálculo manual
+        print('paso:', i+1 , '|x=', x, "error",np.linalg.norm(x-xTemp) )
+        if np.linalg.norm(x-xTemp) < eps: #xtemp es la condición de salida
+            return x
+    return x
+
+
+#ingresa los valores al sistema
+A = np.array([[3,-1,1],[3,6,2],[3,3,7]])  #matriz cuadrada n x n
+b = np.array([1,0,4])           # matriz trnspuesta b
+x0 = np.array([0,0,0]) # valor inicial del sistema depende de la dimensión de la matriz A;  [[[np.random.rand(2)]]]
+
+x= GS(A,b,x0)
+
+
+
+print('SOLUCIÓN Gauss-Seidel; x=', x)
+print('b calculado:', np.dot(A,x))
+
+print('solución Gaussiana del paquete numpy',  np.linalg.solve(A,b)) #solución Gaussinana con paquete de numpy
+
+
+############ESTA PARTE SE PUEDE MEJORAR DEFINIENDO UNA SOLA VARIABLE GLOBAL ########################
+D1 = np.diag(np.diag(A))
+L1 = np.tril(A,-1)
+U1= np.triu(A,+1)
+DL_i1 = -np.linalg.inv(D1+L1)
+G = np.dot(DL_i1,U1)
+gamma = np.linalg.eig(G)
+print("Los autovalores de la matriz A son:")
+pprint.pprint(gamma[0]) #imprime los autovalores de la matriz A
+g1 = max(gamma[0]) #valor de los autovalores máximos 
+if g1 < 1 :
+    print("Admite el método iterativo de Gauss-Siedel")
+else:
+    print("No admite el método iterativo de Gauss-Siedel")
+
+#####################################################################################################
