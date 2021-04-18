@@ -1,0 +1,21 @@
+import numpy as np
+import pprint
+ 
+b = np.array([ [0.9,-0.2,-0.3],[0.1,1,-0.1],[0.3,0.2,1.1] ])
+m = (np.identity(3) - b)   #matriz con la que voy a operar la serie I-A=M
+#print(m)       #opcional para verificar la matriz I-A = M
+tol=1e-5
+i=0
+x=np.linalg.norm(m) #norma de la matriz m
+sum1=np.array([[0,0,0],[0,0,0],[0,0,0]]) # tambiém puedo inicializar con np.empty_like(a)(asigna ceros con el tamaño del array a)
+while x > tol:  #norma > tolerancia
+  sum=  np.linalg.matrix_power(m,i) #potencia de la matriz A^(k), nucleo de la operacion de la serie de 
+  sum1=sum1 + sum #realiza la sumatoria
+  i=i+1 #incrementa contador 
+  print("iteración",i) #número de iteraciones
+  pprint.pprint(sum1) #imprime la matriz de la serie de potencia componente A^(k)
+  x=np.linalg.norm(sum) #ontiene la norma 2 de la matriz 
+  print("Norma") 
+  print(x)
+print("Matriz inversa por la serie de Carl Neuman")
+pprint.pprint(sum1) #imprime resultado
