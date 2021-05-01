@@ -1,0 +1,34 @@
+########################### MÉTODO DE LA POTENCIA ###############################################
+import numpy as np
+import pprint
+ 
+A = np.array([[6, 5, -5], 
+              [2,6,-2], 
+              [2,5,-1]]) #matriz de de ingreso
+v = np.array([[-1,0,1]])  #vector inicial q_0
+
+
+##################Se solicita determinante para ahorrar pasos ####################
+if np.linalg.det(A) != 0:  #garantizo que la matriz tenga determinante no nulo 
+    dist=1 #inicializo la diferencia x_(n+1) - x_(n) 
+    r=0   #inicializo variable 
+    tol=1e-4  #tolerancia
+    i=0     #contador 
+    while dist > tol: 
+        i=i+1
+        x=np.dot(np.linalg.matrix_power(A,i),v.transpose()) # producto de A^n * v
+        t=np.dot(np.linalg.matrix_power(A, i+1),v.transpose()) #producto de A^(n+1) * v
+        pprint.pprint(t)
+        z= t[0][0] / x[0][0]  #Se selecciona los primeros elemntos de los vectores y se divide y normalizar el vector de salida
+        print("Paso:",i, "Autovalor:", z) #imprime en paso y autovalor 
+        dist=abs(z-r) #guardo el valor de la diferecia y obtengo el v.a. de x_(n+1)-x_(n)
+        r=z
+        v1 =(1/r)*np.dot( np.linalg.matrix_power(A,i-1),v.transpose()) #calcula la aproximación al vector propio dominate
+        pprint.pprint(v1)      #imprime el vector en forma matricial
+else:
+    print("El determinante de A es cero")  #en caso que el determinate sea cero
+
+print("EL VECTOR PROPIO DOMINANES ES:")
+pprint.pprint(v1) #Imprime el vecto propio dominante
+print("EL AUTOVALOR ASOCIADO ES:", z)
+print(np.linalg.eigvals(A)) #comprobar con el paquete que tiene python los valores propios 
