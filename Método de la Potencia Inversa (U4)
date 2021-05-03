@@ -1,0 +1,43 @@
+import numpy as np
+import pprint
+
+###################Método de la potencia inversa #######################################
+A = np.array([[3,0,1],
+              [0,-3,0],
+              [1,0,3]]) #ingresa el valor de la matriz
+
+x0= np.array([[0,1,2]]) #ingresa el valor del vector o valor inicial
+
+x1 = x0.transpose() # se traspone la matriz para poder realizar el producto
+
+if np.linalg.det(A) != 0 :
+    B=np.linalg.inv(A)  #se invierte la matriz A para aplicar el método de la inversa
+    dist=1
+    r=0
+    eps=1e-4
+    i=0
+    while dist > eps:
+        x= np.dot(B,x1)
+        z= 1/(x[0][0]) #se selecciona el primer valor, hay que tener cuidado que no sea cero
+        x1= np.dot(z,x)
+        print("Autovector:x",i+1)
+        pprint.pprint(x1)
+        dist=abs(z-r)
+        r=z
+        print("Paso",i,"Autovalor 1/lamda(",i+1,"):",z)
+        d=np.linalg.norm(x1,np.inf) #se solicita la norma infinito 
+        print("La Norma Infinito,es:",d)
+        i=i+1
+else:
+    print("El determinante de la matriz es cero")
+
+print("autovalores calculados sobre la matriz C^{-1} con paquete numpy")    
+print(np.linalg.eigvals(A))
+
+#############################  A mejorar ##########################################################
+#Obs: se podría incluir un ciclo if para verificar si el valor es cero y luego salir del programa
+###################################################################################################
+
+#z=np.linalg.eig(B)
+#z1=np.linalg.eigvals(B)
+#print(z)
