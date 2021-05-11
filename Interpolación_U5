@@ -1,0 +1,28 @@
+import  math     #librería matemática
+import numpy as np  #librería que simula mathlab
+import matplotlib.pyplot as plt #librería para graficar
+
+#construimos el plonomio interpolador de grado 3 que interpole a los puntos (-0.5,0.8);(.1);(3,7);(4,8)
+
+xi = np.array([-0.5,0,0.5]) #asigna una vector con las componentes de las abscisas
+yi = np.array([0.8,1,0.8 ]) #asigna un vector con las ordenadas
+c = np.polyfit(xi,yi,2) #calcula el polinomio interpolador guardano sus coeficientes en un array, "2" indica el grado solicitado
+print(c)                #imprime el array
+p = np.poly1d(c)        # convierte el array en un polinomio
+print("polinomio:")
+print(p)                # imprime el polinomio con la versión tradicional 
+#print(np.polyval(p,1))
+#print(np.polyval(p,2))
+print("p(0.25)", p(0.25))
+print("x:",xi) 
+print("f(xi):",p(xi) )
+
+#Grafica
+
+x = np.linspace(-2,4,10) #20 puntos espacioados 
+y = np.polyval(p,x)       #evaluamos el polinomio en esos 20 puntos
+plt.plot(x,y)             #grafica el polinomio p en esos 20 puntos
+plt.plot(xi,yi,'.',ms=20) # "ms" marker size es para agrandar lospuntos 
+#plt.plot(1/(1+(x**2) ) )
+
+np.linalg.norm(x,np.Inf)
