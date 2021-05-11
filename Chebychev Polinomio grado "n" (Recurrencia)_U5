@@ -1,0 +1,14 @@
+import  math     #librería matemática
+import numpy as np  #librería que simula mathlab
+import matplotlib.pyplot as plt #librería para graficar
+
+def cheby(n): #polinomio de Chebychev por recurrencia 
+    if(n==0):
+        return(np.poly1d([1]))
+    if(n==1):
+        return(np.poly1d([1,0]))
+    if(n>1):
+        px = np.poly1d([1,0])
+        return(2*px*cheby(n-1)-cheby(n-2))
+print(cheby(3))
+### se puede agregar la opción cheby(n).r para obtener las raices del polinomio de grado "n"
