@@ -1,0 +1,20 @@
+import  math     #librería matemática
+import numpy as np  #librería que simula mathlab
+import matplotlib.pyplot as plt #librería para graficar
+from scipy import interpolate
+import sympy as sp
+
+def f(x):
+    return(x*np.cos(x) -(2*(x**2))+(3*x)-1) #se define la función
+
+n=4
+xi = np.linspace(0.1,0.4,n)#se selecciona el intervalo de 0.1 a 0.4 con 4 nodos equiespaciados con esos 
+yi = f(xi)
+#p = interpolate.interp1d(xi, yi, kind='cubic') #comando alternativo para hacer cubic spline
+g = interpolate.CubicSpline(xi, yi,bc_type='natural' )
+
+
+x = np.linspace(0,0.8,10) #grafica los puntos del dominio de 0 a 0.8
+plt.plot(x, f(x)) #grafica la función 
+plt.plot(x, g(x)) #grafica el polinomio interpolante
+print(g(0.25))  #se solicita que imprima el valor de g(0.25)
