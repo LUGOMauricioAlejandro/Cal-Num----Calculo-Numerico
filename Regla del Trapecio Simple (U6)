@@ -1,0 +1,9 @@
+def trapecio_simple(f, A, B):
+    return (B-A) * ((f(A) + f(B))/2)
+
+from numpy import exp, sin, log
+
+def f1(x):
+    return (x**2)*log(x)
+
+trapecio_simple(f1, 1, 1.5)
