@@ -1,0 +1,22 @@
+############### METODO DE RUNGE-KUTTA ################
+from math import *
+
+def f(t,u):
+    func = t*u + 1 #def la EDO
+    return func
+
+def RK2(t,y,h,n):
+    print('y(',t,')=',y )
+    for k in range(n):
+        K1 =  h*f(t,y)
+        K2 =  h*f(t+(h/2),y + (h/2)*K1 )
+        y = y + K2
+        t = t+h
+        print('y(',round(t,3),')=',y )
+        plt.plot(t , y, "k--o",linestyle='solid' , color='b' )
+        
+    
+RK2(0,1,0.05,20) 
+plt.xlabel('t')
+plt.ylabel('u(t)') 
+plt.legend(['Runge-Kutta'])
