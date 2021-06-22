@@ -1,0 +1,21 @@
+############### METODO DE HEUN o  EULER MODIFICADO ################
+from math import *
+
+def f(t,u):
+    func = t*u + 1 #def la EDO
+    return func
+
+def Huen(t,u,h,n):
+    print('u(',t,')=',u )
+    for k in range(n):
+        u0 = u + h*f(t,u) #parte predictora
+        u = u + (h/2)*(f(t,u)+ f(t+h,u0)) #parte correctora
+        t = t + h 
+        print('u(',round(t,3) ,')=',u ) #imprime resultado
+        plt.plot(t , u, ".-",linestyle='solid' , color='g' )
+
+      
+Huen(0,0,0.05,20)     #inicializa iteraciones
+plt.xlabel( 't')
+plt.ylabel( 'u(t)') 
+plt.legend([ 'Metodo de Huen']) 
