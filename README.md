@@ -1,7 +1,7 @@
 # Cal-Num-
 
 
-Algoritmos en Python de la Materia de Cálculo Numérico - Universidad Nacional de la Patagonia (Sede: Comodoro Rivadavia)
+Algoritmos en Python de la Materia de Cálculo Numérico - 
 
 
 
