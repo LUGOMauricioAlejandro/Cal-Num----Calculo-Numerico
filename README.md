@@ -1,7 +1,7 @@
 # Cal-Num-
 
 
-Algoritmos en Python de la Materia de Cálculo Numérico - 
+Algoritmos en Python de la Materia de Cálculo Numérico - Dra María Mendonca (Mis mayores consideraciones)
 
 
 
