@@ -1,4 +1,6 @@
-# Cal-Num-
+# Cálculo - Numérico 
+
+La implementación se puede observar en el siguiente Link: [link](https://www.linkedin.com/in/mauricio-lugo-71b45a1b8/)
 
 
 Algoritmos en Python de la Materia de Cálculo Numérico - Dra María Mendonca (Mis mayores consideraciones)
